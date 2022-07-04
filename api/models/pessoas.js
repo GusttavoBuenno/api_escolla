@@ -4,35 +4,36 @@ module.exports = (sequelize, DataTypes) => {
     "Pessoas",
     {
       nome: {
-        type:DataTypes.STRING,
-      validate: {
-        funcaoValidadora: function(dado) {
-          if (dado.length < 3 ) throw new Error('o Campo nome deve ter mais de 3 caracteres.')
+        type: DataTypes.STRING,
+        validate: {
+          funcaoValidadora: function (dado) {
+            if (dado.length < 3) throw new Error('o Campo nome deve ter mais de 3 caracteres.')
+          }
         }
-      }},
+      },
       ativo: DataTypes.BOOLEAN,
-
-      
 
       email: {
         type: DataTypes.STRING,
-      validate: {
-        isEmail: {
-          args: true,
-          msg: 'dado do tipo e-mail inválido'               //valindao email
+        validate: {
+          isEmail: {
+            args: true,
+            msg: 'dado do tipo e-mail inválido'               //valindao email
+          }
         }
-      }},
+      },
       role: DataTypes.STRING,
     },
-    { paranoid: true,
+    {
+      paranoid: true,
       defaultScope: {
-        where: { ativo: true}
+        where: { ativo: true }
       },
       scopes: {
         todos: { where: {} },
 
       }
-     }
+    }
   ); // usando paranoid, para que nenhum registo seja realmente deletado ficando no banco
   Pessoas.associate = function (models) {
     Pessoas.hasMany(models.Turmas, {
@@ -40,13 +41,9 @@ module.exports = (sequelize, DataTypes) => {
     });
     Pessoas.hasMany(models.Matriculas, {
       foreignKey: "estudante_id"
-    
+
     });
-    Pessoas.hasMany(models.Pessoas, {
-      foreignKey: 'turma_id',
-      scope: { status: true},
-      as: 'turma'
-    });
+
   };
   return Pessoas;
 };
