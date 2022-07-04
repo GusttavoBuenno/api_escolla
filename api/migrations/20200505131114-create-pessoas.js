@@ -14,6 +14,11 @@ module.exports = {
       ativo: {
         type: Sequelize.BOOLEAN
       },
+      turma: {
+        allowNull: false,
+        autoIncrement,
+        type: Sequelize.INTEGER
+      },
       email: {
         type: Sequelize.STRING
       },

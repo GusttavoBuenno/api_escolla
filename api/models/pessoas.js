@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
         }
       }},
       ativo: DataTypes.BOOLEAN,
+
+      
+
       email: {
         type: DataTypes.STRING,
       validate: {
@@ -36,8 +39,14 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "docente_id",
     });
     Pessoas.hasMany(models.Matriculas, {
-      foreignKey: "estudante_id",
-    })
+      foreignKey: "estudante_id"
+    
+    });
+    Pessoas.hasMany(models.Pessoas, {
+      foreignKey: 'turma_id',
+      scope: { status: true},
+      as: 'turma'
+    });
   };
   return Pessoas;
 };

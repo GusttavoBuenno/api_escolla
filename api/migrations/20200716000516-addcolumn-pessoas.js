@@ -1,7 +1,7 @@
 'use strict'
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.addColumn('Pessoas', 'deletedAt', {
+    return queryInterface.addColumn('Pessoas', 'turma', 'deletedAt', {
       allowNull: true,
       type: Sequelize.DATE
     })
