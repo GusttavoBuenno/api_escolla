@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       role: DataTypes.STRING,
+      turma: DataTypes.BOOLEAN,
     },
     {
       paranoid: true,
@@ -38,6 +39,9 @@ module.exports = (sequelize, DataTypes) => {
   Pessoas.associate = function (models) {
     Pessoas.hasMany(models.Turmas, {
       foreignKey: "docente_id",
+    });
+    Pessoas.hasMany(models.Matriculas, {
+      foreignKey: "turma_id",
     });
     Pessoas.hasMany(models.Matriculas, {
       foreignKey: "estudante_id"
