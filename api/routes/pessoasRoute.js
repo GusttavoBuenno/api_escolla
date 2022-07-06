@@ -2,13 +2,12 @@ const { Router } = require('express')
 
 const PessoaController = require('../controllers/PessoaController')
 
-const Fkpessoas = require('../controllers/Fkpessoas')
+
 
 const router = Router()
 
 router
-  .get('/fkpessoas', Fkpessoas.pegaPessoasCTurmas)
-  .get('/fkpessoas/:id', Fkpessoas.pegaUmaFkpessoa)
+
   .get('/pessoas', PessoaController.pegaPessoasAtivas)
   .get('/pessoas/todos', PessoaController.pegaTodasAsPessoas)
   .get('/pessoas/:id', PessoaController.pegaUmaPessoa)
@@ -21,6 +20,7 @@ router
   .put('/pessoas/:id', PessoaController.atualizaPessoa)
   .delete('/pessoas/:estudanteId/matricula/:matriculaId', PessoaController.apagaMatricula)
   .delete('/pessoas/:id', PessoaController.apagaPessoa)
+
 
 
 module.exports = router

@@ -8,9 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     { paranoid: true }
   ); // usando paranoid, para que nenhum registo seja realmente deletado ficando no banco
   Turmas.associate = function (models) {
-    Turmas.hasMany(models.Matriculas, {
-      foreignKey: "turma_id",
-    });
+
     Turmas.belongsTo(models.Pessoas, {
       foreignKey: "docente_id",
     });

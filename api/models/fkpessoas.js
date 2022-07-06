@@ -22,10 +22,9 @@ module.exports = (sequelize, DataTypes) => {
     nome: DataTypes.STRING,
     ativo: DataTypes.BOOLEAN,
     email: DataTypes.STRING,
-    turma: DataTypes.BOOLEAN,
+    turma: DataTypes.STRING,
     role: DataTypes.STRING,
-    createdAt: DataTypes.STRING,
-    updatedAt: DataTypes.STRING
+
   }, {
     sequelize,
     modelName: 'Fkpessoas',
