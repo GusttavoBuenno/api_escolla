@@ -1,0 +1,4 @@
+module.exports = {
+    secret: "67DAAE98ED0C612857A716202F463356FFCF1A018CE140AB4A4BEBC8EB274E6D",
+    expirenIn: "10m"
+}
