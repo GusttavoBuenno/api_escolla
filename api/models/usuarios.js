@@ -3,19 +3,20 @@
 module.exports = (sequelize, DataTypes) => {
 
   const Usuarios = sequelize.define(
+    "Usuarios",
     {
-      name: {
-        type: String,
+      nome: {
+        type: DataTypes.STRING,
         required: true,
       },
       email: {
-        type: String,
+        type: DataTypes.STRING,
         unique: true,
         required: true,
       },
 
-      password: {
-        type: String,
+      senha: {
+        type: DataTypes.STRING,
         required: true,
       },
 
@@ -25,20 +26,20 @@ module.exports = (sequelize, DataTypes) => {
     },
   )
 
-  Usuarios.pre('Usuarios', async function (next) {
-    if (!this.ifModified('password')) {
+  new Usuarios('Usuarios', async function (next) {
+    if (!this.ifModified('senha')) {
       next()
     }
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt)
   }),
 
-    Pessoas.associate = function (models) {
-      Pessoas.hasMany(models.Turmas, {
+    Usuarios.associate = function (models) {
+      Usuarios.hasMany(models.Turmas, {
         foreignKey: "docente_id",
       });
 
-      Pessoas.hasMany(models.Matriculas, {
+      Usuarios.hasMany(models.Matriculas, {
         foreignKey: "estudante_id"
 
       });

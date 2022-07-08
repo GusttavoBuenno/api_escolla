@@ -1,13 +1,14 @@
 const { Router } = require('express')
 
 const PessoaController = require('../controllers/PessoaController')
+const UsuarioController = require('../controllers/UsuarioController')
 
 
 
 const router = Router()
 
 router
-
+  .post('/usuario', UsuarioController.create)
   .get('/pessoas', PessoaController.pegaPessoasAtivas)
   .get('/pessoas/todos', PessoaController.pegaTodasAsPessoas)
   .get('/pessoas/:id', PessoaController.pegaUmaPessoa)
