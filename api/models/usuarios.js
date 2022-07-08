@@ -1,50 +1,49 @@
 'use strict';
 
-
-const { Model, } = require('sequelize');
-const bcrypt = require('bcrypt');
-
 module.exports = (sequelize, DataTypes) => {
 
+  const Usuarios = sequelize.define(
+    {
+      name: {
+        type: String,
+        required: true,
+      },
+      email: {
+        type: String,
+        unique: true,
+        required: true,
+      },
 
-  class Usuarios extends Model {
+      password: {
+        type: String,
+        required: true,
+      },
 
 
-    static gerarSenhaHash(senha) {
-      const custoHash = 12;
-      return bcrypt.hash(senha, custoHash)
-    }
-
-    async adicionaSenha(senha) {
-      this.senhaHash = await Usuario.gerarSenhaHash(senha)
-    }
-  };
-  Usuarios.init({
-    email: {
-      type: DataTypes.STRING,
-      unique: true,
-      validate: {
-        funcaoValidadora: function (dado) {
-          if (dado.length < 3) throw new Error('o Campo nome deve ter mais de 3 caracteres.')
-        }
-      }
+      timestamps: true,
 
     },
+  )
 
-    senha: {
-      type: DataTypes.STRING,
-      senhaHash: DataTypes.STRING,
-      allowNull: false
+  Usuarios.pre('Usuarios', async function (next) {
+    if (!this.ifModified('password')) {
+      next()
+    }
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt)
+  }),
 
-    },
+    Pessoas.associate = function (models) {
+      Pessoas.hasMany(models.Turmas, {
+        foreignKey: "docente_id",
+      });
 
-  }, {
-    sequelize,
-    modelName: 'Usuarios',
-  });
+      Pessoas.hasMany(models.Matriculas, {
+        foreignKey: "estudante_id"
 
+      });
+
+    };
 
   return Usuarios;
 };
-
-
