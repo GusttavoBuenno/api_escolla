@@ -10,10 +10,10 @@ module.exports = {
       },
       email: {
         type: Sequelize.STRING,
+        unique: true,
         allowNull: false,
-        unique: true
       },
-      senha: {
+      senhaHash: {
         type: Sequelize.STRING
       },
       createdAt: {

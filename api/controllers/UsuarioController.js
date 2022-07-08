@@ -14,6 +14,8 @@ class UsuarioController {
 
     }
 
+    static async
+
 }
 
 
