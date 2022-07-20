@@ -9,9 +9,11 @@ module.exports = (sequelize, DataTypes) => {
   ); // usando paranoid, para que nenhum registo seja realmente deletado, permanecendo no banco
   Matriculas.associate = function (models) {
     Matriculas.belongsTo(models.Pessoas, {
-      foreignKey: "estudante_id",
-    });
-
+      foreignKey: 'estudante_id'
+    })
+    Matriculas.belongsTo(models.Turmas, {
+      foreignKey: 'turma_id'
+    })
 
   };
   return Matriculas;

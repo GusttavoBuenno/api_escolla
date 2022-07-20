@@ -1,4 +1,7 @@
 'use strict'
+
+const { sequelize } = require("../models")
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Niveis', {
@@ -9,6 +12,9 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       descr_nivel: {
+        type: Sequelize.STRING
+      },
+      grade_curricular: {
         type: Sequelize.STRING
       },
       createdAt: {

@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     "Niveis",
     {
       descr_nivel: DataTypes.STRING,
+      descr_grade: DataTypes.STRING
     },
     { paranoid: true }
   ); // usando paranoid, para que nenhum registo seja realmente deletado ficando no banco
@@ -11,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     Niveis.hasMany(models.Turmas, {
       foreignKey: "nivel_id",
     });
+
   };
   return Niveis;
 };

@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "guhzika10",
-    "database": "api_escol",
+    "database": "api_db",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "operatorsAliases": 0
@@ -10,7 +10,7 @@
   "test": {
     "username": "root",
     "password": "guhzika10",
-    "database": "api_escol",
+    "database": "api_db",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "operatorsAliases": false
