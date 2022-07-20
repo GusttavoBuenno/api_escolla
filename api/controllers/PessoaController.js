@@ -21,6 +21,8 @@ class PessoaController {
   }
 
 
+
+
   static async pegaUmaPessoa(req, res) {
     const { id } = req.params;
     try {
